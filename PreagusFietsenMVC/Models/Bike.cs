@@ -9,6 +9,7 @@ namespace PreagusFietsenMVC.Models
     public class Bike
     {
         [Key]
+        public int ID { get; set; }
         public BikeType Type { get; set; }
         public BikeGender Gender { get; set; }
         public BikeSize Size { get; set; }

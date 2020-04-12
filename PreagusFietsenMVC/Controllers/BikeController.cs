@@ -10,107 +10,107 @@ using PreagusFietsenMVC.Models;
 
 namespace PreagusFietsenMVC.Controllers
 {
-    public class ReservationController : Controller
+    public class BikeController : Controller
     {
         private BikeStoreContext db = new BikeStoreContext();
 
-        // GET: Reservation
+        // GET: Bike
         public ActionResult Index()
         {
-            return View(db.Reservations.ToList());
+            return View(db.Bikes.ToList());
         }
 
-        // GET: Reservation/Details/5
+        // GET: Bike/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
-            if (reservation == null)
+            Bike bike = db.Bikes.Find(id);
+            if (bike == null)
             {
                 return HttpNotFound();
             }
-            return View(reservation);
+            return View(bike);
         }
 
-        // GET: Reservation/Create
+        // GET: Bike/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Reservation/Create
+        // POST: Bike/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate")] Reservation reservation)
+        public ActionResult Create([Bind(Include = "ID,Type,Gender,Size,Brand,HourRate,DailyRate")] Bike bike)
         {
             if (ModelState.IsValid)
             {
-                db.Reservations.Add(reservation);
+                db.Bikes.Add(bike);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(reservation);
+            return View(bike);
         }
 
-        // GET: Reservation/Edit/5
+        // GET: Bike/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
-            if (reservation == null)
+            Bike bike = db.Bikes.Find(id);
+            if (bike == null)
             {
                 return HttpNotFound();
             }
-            return View(reservation);
+            return View(bike);
         }
 
-        // POST: Reservation/Edit/5
+        // POST: Bike/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,StartDate,EndDate")] Reservation reservation)
+        public ActionResult Edit([Bind(Include = "ID,Type,Gender,Size,Brand,HourRate,DailyRate")] Bike bike)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(reservation).State = EntityState.Modified;
+                db.Entry(bike).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(reservation);
+            return View(bike);
         }
 
-        // GET: Reservation/Delete/5
+        // GET: Bike/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
-            if (reservation == null)
+            Bike bike = db.Bikes.Find(id);
+            if (bike == null)
             {
                 return HttpNotFound();
             }
-            return View(reservation);
+            return View(bike);
         }
 
-        // POST: Reservation/Delete/5
+        // POST: Bike/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Reservation reservation = db.Reservations.Find(id);
-            db.Reservations.Remove(reservation);
+            Bike bike = db.Bikes.Find(id);
+            db.Bikes.Remove(bike);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
