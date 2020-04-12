@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreagusFietsenMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,10 @@ namespace PreagusFietsenMVC.Controllers
 {
     public class ReservationController : Controller
     {
+        private BikeStoreContext db = new BikeStoreContext();
         public ActionResult Index()
         {
-            return View();
+            return View(db.Reservations.ToList());
         }
     }
 }
