@@ -17,7 +17,8 @@ namespace PreagusFietsenMVC.Controllers
         // GET: Reservation
         public ActionResult Index()
         {
-            return View(db.Reservations.ToList());
+            var Reservations = db.Reservations.Include(c => c.Bikes);
+            return View(Reservations.ToList());
         }
 
         // GET: Reservation/Details/5
@@ -38,6 +39,7 @@ namespace PreagusFietsenMVC.Controllers
         // GET: Reservation/Create
         public ActionResult Create()
         {
+            ViewBag.Bikes = new SelectList(db.Bikes, "ID", "Type");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace PreagusFietsenMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate")] Reservation reservation)
+        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,Bikes")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
