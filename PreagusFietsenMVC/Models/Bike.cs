@@ -14,7 +14,9 @@ namespace PreagusFietsenMVC.Models
         public BikeGender Gender { get; set; }
         public BikeSize Size { get; set; }
         public string Brand { get; set; }
+        [Display(Name = "Hour rate")]
         public double HourRate { get; set; }
+        [Display(Name = "Daily rate")]
         public double DailyRate { get; set; }
 
         public enum BikeType
