@@ -6,110 +6,111 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PreagusFietsenMVC.Models;
 
-namespace PreagusFietsenMVC.Models
+namespace PreagusFietsenMVC.Controllers
 {
-    public class StoreController : Controller
+    public class CustomerController : Controller
     {
         private BikeStoreContext db = new BikeStoreContext();
 
-        // GET: Store
+        // GET: Customer
         public ActionResult Index()
         {
-            return View(db.Stores.ToList());
+            return View(db.Customers.ToList());
         }
 
-        // GET: Store/Details/5
+        // GET: Customer/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Store store = db.Stores.Find(id);
-            if (store == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(store);
+            return View(customer);
         }
 
-        // GET: Store/Create
+        // GET: Customer/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Store/Create
+        // POST: Customer/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Address,City")] Store store)
+        public ActionResult Create([Bind(Include = "ID,Name,gender,Height,Email")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Stores.Add(store);
+                db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(store);
+            return View(customer);
         }
 
-        // GET: Store/Edit/5
+        // GET: Customer/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Store store = db.Stores.Find(id);
-            if (store == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(store);
+            return View(customer);
         }
 
-        // POST: Store/Edit/5
+        // POST: Customer/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Address,City")] Store store)
+        public ActionResult Edit([Bind(Include = "ID,Name,gender,Height,Email")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(store).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(store);
+            return View(customer);
         }
 
-        // GET: Store/Delete/5
+        // GET: Customer/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Store store = db.Stores.Find(id);
-            if (store == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(store);
+            return View(customer);
         }
 
-        // POST: Store/Delete/5
+        // POST: Customer/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Store store = db.Stores.Find(id);
-            db.Stores.Remove(store);
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

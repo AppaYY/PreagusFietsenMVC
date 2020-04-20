@@ -6,9 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PreagusFietsenMVC.Models;
 
-namespace PreagusFietsenMVC.Controllers
+namespace PreagusFietsenMVC.Models
 {
     public class ReservationController : Controller
     {
@@ -17,8 +16,7 @@ namespace PreagusFietsenMVC.Controllers
         // GET: Reservation
         public ActionResult Index()
         {
-            var Reservations = db.Reservations.Include(c => c.Bikes);
-            return View(Reservations.ToList());
+            return View(db.Reservations.ToList());
         }
 
         // GET: Reservation/Details/5
@@ -39,7 +37,6 @@ namespace PreagusFietsenMVC.Controllers
         // GET: Reservation/Create
         public ActionResult Create()
         {
-            ViewBag.Bikes = new SelectList(db.Bikes, "ID", "Type");
             return View();
         }
 
@@ -48,7 +45,7 @@ namespace PreagusFietsenMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,Bikes")] Reservation reservation)
+        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {

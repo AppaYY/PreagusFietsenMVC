@@ -6,9 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PreagusFietsenMVC.Models;
 
-namespace PreagusFietsenMVC.Controllers
+namespace PreagusFietsenMVC.Models
 {
     public class BikeController : Controller
     {

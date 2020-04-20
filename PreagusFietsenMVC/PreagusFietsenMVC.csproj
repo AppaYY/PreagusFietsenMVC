@@ -127,19 +127,21 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BikeController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ReservationController.cs" />
-    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bike.cs" />
+    <Compile Include="Controllers\BikeController.cs" />
     <Compile Include="Models\BikeStoreContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Models\Store.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ReservationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -176,11 +178,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Reservation\Index.cshtml" />
-    <Content Include="Views\Reservation\Create.cshtml" />
-    <Content Include="Views\Reservation\Delete.cshtml" />
-    <Content Include="Views\Reservation\Details.cshtml" />
-    <Content Include="Views\Reservation\Edit.cshtml" />
     <Content Include="Views\Bike\Create.cshtml" />
     <Content Include="Views\Bike\Delete.cshtml" />
     <Content Include="Views\Bike\Details.cshtml" />
@@ -191,6 +188,16 @@
     <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Store\Edit.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\Reservation\Create.cshtml" />
+    <Content Include="Views\Reservation\Delete.cshtml" />
+    <Content Include="Views\Reservation\Details.cshtml" />
+    <Content Include="Views\Reservation\Edit.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
