@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreagusFietsenMVC.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -37,7 +38,7 @@ namespace PreagusFietsenMVC.Models
         // GET: Reservation/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new ReservationViewModel());
         }
 
         // POST: Reservation/Create
@@ -45,16 +46,15 @@ namespace PreagusFietsenMVC.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate")] Reservation reservation)
+        public ActionResult Create(ReservationViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                db.Reservations.Add(reservation);
-                db.SaveChanges();
+                vm.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(reservation);
+            return View(vm);
         }
 
         // GET: Reservation/Edit/5

@@ -15,5 +15,11 @@ namespace PreagusFietsenMVC.ViewModels
         public SelectList AllBikes { get; set; }
 
         public ReservationViewModel() => AllBikes = new SelectList(_db.Bikes, "ID", "Type");
+
+        public void Save()
+        {
+            _db.Reservations.Add(Reservation);
+            _db.SaveChanges();
+        }
     }
 }

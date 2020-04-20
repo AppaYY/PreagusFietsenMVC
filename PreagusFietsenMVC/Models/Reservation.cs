@@ -11,8 +11,10 @@ namespace PreagusFietsenMVC.Models
     {
         [Key]
         public int ID { get; set; }
-        public Customer Customer{ get; set; }
-        public Bike Bike { get; set; }
+        public int CustomerID { get; set; }
+        public virtual Customer Customer{ get; set; }
+        public int BikeID { get; set; }
+        public virtual Bike Bike { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Store PickUp { get; set; }
