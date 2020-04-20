@@ -48,8 +48,9 @@ namespace PreagusFietsenMVC.Models
         [ValidateAntiForgeryToken]
         public ActionResult Create(ReservationViewModel vm)
         {
-            if (ModelState.IsValid)
+           if (ModelState.IsValid)
             {
+                vm.CalculatePrice();
                 vm.Save();
                 return RedirectToAction("Index");
             }

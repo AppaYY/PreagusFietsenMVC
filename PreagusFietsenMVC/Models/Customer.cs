@@ -10,6 +10,7 @@ namespace PreagusFietsenMVC.Models
     {
         [Key]
         public int ID { get; set; }
+        [Display(Name = "Customer name")]
         public string Name { get; set; }
         public CustomerGender Gender { get; set; }
         public double Height { get; set; }
