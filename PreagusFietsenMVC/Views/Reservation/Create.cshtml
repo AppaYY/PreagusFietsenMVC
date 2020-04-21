@@ -13,75 +13,98 @@
 <div class="form-horizontal">
     <hr />
     <h4>Reservation: </h4>
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Reservation.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Reservation.StartDate, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Reservation.StartDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    <br />
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Reservation.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Reservation.EndDate, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Reservation.EndDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    <b>Chosen bike</b>
+    <table id="bikeInformationTable">
+        <tr>
+            <td><b>Store City: </b></td>
+            <td>@Model.Bike.InStore.City</td>
+        </tr>
+        <tr>
+            <td><b>Store Adress: </b></td>
+            <td>@Model.Bike.InStore.Address</td>
+        </tr>
+        <tr>
+            <td><b>Gender: </b></td>
+            <td>@Model.Bike.Gender</td>
+        </tr>
+        <tr>
+            <td><b>Type: </b></td>
+            <td>@Model.Bike.Type</td>
+        </tr>
+    </table>
+    <br />
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Reservation.BikeID, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Reservation.BikeID, Model.AllBikes, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.AllBikes, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Reservation.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Reservation.StartDate, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Reservation.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <h4>Customer: </h4>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Reservation.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Reservation.EndDate, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Reservation.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Customer.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Customer.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Customer.Name, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Reservation.BikeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Reservation.BikeID, Model.AllBikes, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AllBikes, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Customer.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.Customer.Gender, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Customer.Gender, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Customer.Height, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Customer.Height, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Customer.Height, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <hr />
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Customer.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Customer.Email, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Customer.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <h4>Customer: </h4>
 
-    @Html.DisplayFor(model => model.TotalPrice)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Customer.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.Customer.Gender, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Customer.Gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer.Height, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Customer.Height, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer.Height, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Customer.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
 </div>
 }
 

@@ -6,3 +6,7 @@
     font-size: 2.5rem;
     font-weight: 300;
 }
+
+#bikeInformationTable td {
+    min-width: 100px;
+}

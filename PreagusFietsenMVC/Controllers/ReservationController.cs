@@ -12,12 +12,12 @@ namespace PreagusFietsenMVC.Models
 {
     public class ReservationController : Controller
     {
-        private BikeStoreContext db = new BikeStoreContext();
+        private BikeStoreContext _db = new BikeStoreContext();
 
         // GET: Reservation
         public ActionResult Index()
         {
-            return View(db.Reservations.ToList());
+            return View(_db.Reservations.ToList());
         }
 
         // GET: Reservation/Details/5
@@ -27,7 +27,7 @@ namespace PreagusFietsenMVC.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation reservation = _db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -36,9 +36,9 @@ namespace PreagusFietsenMVC.Models
         }
 
         // GET: Reservation/Create
-        public ActionResult Create()
+        public ActionResult Create(int Id)
         {
-            return View(new ReservationViewModel());
+            return View(new ReservationViewModel(Id));
         }
 
         // POST: Reservation/Create
@@ -50,7 +50,6 @@ namespace PreagusFietsenMVC.Models
         {
            if (ModelState.IsValid)
             {
-                vm.CalculatePrice();
                 vm.Save();
                 return RedirectToAction("Index");
             }
@@ -65,7 +64,7 @@ namespace PreagusFietsenMVC.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation reservation = _db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -82,8 +81,8 @@ namespace PreagusFietsenMVC.Models
         {
             if (ModelState.IsValid)
             {
-                db.Entry(reservation).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(reservation).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(reservation);
@@ -96,7 +95,7 @@ namespace PreagusFietsenMVC.Models
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation reservation = _db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -109,17 +108,22 @@ namespace PreagusFietsenMVC.Models
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Reservation reservation = db.Reservations.Find(id);
-            db.Reservations.Remove(reservation);
-            db.SaveChanges();
+            Reservation reservation = _db.Reservations.Find(id);
+            _db.Reservations.Remove(reservation);
+            _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public void Price(ReservationViewModel vm)
+        {
+            vm.CalculatePrice();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

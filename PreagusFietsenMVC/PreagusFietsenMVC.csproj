@@ -127,13 +127,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BikeController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bike.cs" />
-    <Compile Include="Controllers\BikeController.cs" />
     <Compile Include="Models\BikeStoreContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Reservation.cs" />
@@ -178,11 +178,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Bike\Create.cshtml" />
-    <Content Include="Views\Bike\Delete.cshtml" />
-    <Content Include="Views\Bike\Details.cshtml" />
-    <Content Include="Views\Bike\Edit.cshtml" />
-    <Content Include="Views\Bike\Index.cshtml" />
     <Content Include="Views\Store\Create.cshtml" />
     <Content Include="Views\Store\Delete.cshtml" />
     <Content Include="Views\Store\Details.cshtml" />
@@ -198,6 +193,11 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Bike\Create.cshtml" />
+    <Content Include="Views\Bike\Delete.cshtml" />
+    <Content Include="Views\Bike\Details.cshtml" />
+    <Content Include="Views\Bike\Edit.cshtml" />
+    <Content Include="Views\Bike\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

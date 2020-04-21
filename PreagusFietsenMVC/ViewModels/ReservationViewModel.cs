@@ -13,9 +13,18 @@ namespace PreagusFietsenMVC.ViewModels
 
         public Reservation Reservation { get; set; }
         public Customer Customer{ get; set; }
-        public SelectList AllBikes { get; set; }
+        public Bike Bike { get; set; }
+        //public SelectList AllBikes { get; set; }
         public int TotalPrice { get; set; }
-        public ReservationViewModel() => AllBikes = new SelectList(_db.Bikes, "ID", "Type");
+        //public ReservationViewModel() => AllBikes = new SelectList(_db.Bikes, "ID", "Type");
+
+        public ReservationViewModel(int Id)
+        {
+            Reservation = new Reservation();
+            Reservation.BikeID = Id;
+            Bike = _db.Bikes.Find(Id);
+            Bike.InStore = _db.Stores.Find(Bike.InStoreID);
+        }
 
         public void Save()
         {
@@ -23,6 +32,8 @@ namespace PreagusFietsenMVC.ViewModels
             _db.Reservations.Add(Reservation);
             _db.SaveChanges();
         }
+        
+
 
         public void CalculatePrice()
         {

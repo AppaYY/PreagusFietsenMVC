@@ -10,6 +10,7 @@ namespace PreagusFietsenMVC.Models
     {
         [Key]
         public int ID { get; set; }
+        public int InStoreID { get; set; }
         [Display(Name = "In Store")]
         public Store InStore { get; set; }
         [Display(Name = "Bike type")]

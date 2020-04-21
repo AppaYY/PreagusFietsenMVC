@@ -6,8 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PreagusFietsenMVC.Models;
 
-namespace PreagusFietsenMVC.Models
+namespace PreagusFietsenMVC.Controllers
 {
     public class BikeController : Controller
     {
@@ -16,7 +17,8 @@ namespace PreagusFietsenMVC.Models
         // GET: Bike
         public ActionResult Index()
         {
-            return View(db.Bikes.ToList());
+            var bikes = db.Bikes.Include(b => b.InStore);
+            return View(bikes.ToList());
         }
 
         // GET: Bike/Details/5
@@ -37,6 +39,7 @@ namespace PreagusFietsenMVC.Models
         // GET: Bike/Create
         public ActionResult Create()
         {
+            ViewBag.InStoreID = new SelectList(db.Stores, "ID", "Address");
             return View();
         }
 
@@ -45,7 +48,7 @@ namespace PreagusFietsenMVC.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Type,Gender,Size,Brand,HourRate,DailyRate")] Bike bike)
+        public ActionResult Create([Bind(Include = "ID,InStoreID,Type,Gender,Size,Brand,HourRate,DailyRate")] Bike bike)
         {
             if (ModelState.IsValid)
             {
@@ -54,6 +57,7 @@ namespace PreagusFietsenMVC.Models
                 return RedirectToAction("Index");
             }
 
+            ViewBag.InStoreID = new SelectList(db.Stores, "ID", "Address", bike.InStoreID);
             return View(bike);
         }
 
@@ -69,6 +73,7 @@ namespace PreagusFietsenMVC.Models
             {
                 return HttpNotFound();
             }
+            ViewBag.InStoreID = new SelectList(db.Stores, "ID", "Address", bike.InStoreID);
             return View(bike);
         }
 
@@ -77,7 +82,7 @@ namespace PreagusFietsenMVC.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Type,Gender,Size,Brand,HourRate,DailyRate")] Bike bike)
+        public ActionResult Edit([Bind(Include = "ID,InStoreID,Type,Gender,Size,Brand,HourRate,DailyRate")] Bike bike)
         {
             if (ModelState.IsValid)
             {
@@ -85,6 +90,7 @@ namespace PreagusFietsenMVC.Models
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.InStoreID = new SelectList(db.Stores, "ID", "Address", bike.InStoreID);
             return View(bike);
         }
 
