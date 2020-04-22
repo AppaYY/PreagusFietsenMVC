@@ -7,6 +7,22 @@
     font-weight: 300;
 }
 
-#bikeInformationTable td {
-    min-width: 100px;
+table {
+    border-collapse: collapse;
+    background-color: white;
+    overflow: hidden;
+    width: 500px;
+    border-radius: 10px;
+}
+
+th, td {
+    font-family: 'Motnserrat',sans-serif;
+    text-align: left;
+    font-size: 12px;
+    padding: 10px;
+}
+
+th {
+    background-color: #7691ab;
+    color: white;
 }
