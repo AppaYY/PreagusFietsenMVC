@@ -10,6 +10,10 @@ namespace PreagusFietsenMVC.Models
     {
         [Key]
         public int ID { get; set; }
+        public int InStoreID { get; set; }
+        [Display(Name = "In Store")]
+        public Store InStore { get; set; }
+        [Display(Name = "Bike type")]
         public BikeType Type { get; set; }
         public BikeGender Gender { get; set; }
         public BikeSize Size { get; set; }
@@ -21,11 +25,11 @@ namespace PreagusFietsenMVC.Models
 
         public enum BikeType
         {
-            Mimikyu, Tailow, Starly, Mewtoo
+            Mimikyu, Tailow, Starly, Mewtoo, Pikachu, Fattypatty, Jumpluff, Flaafy, Applin
         }
         public enum BikeGender
         {
-            Male, Female, Grandma
+            Male, Female, Grandma, Grandpa
         }
 
         public enum BikeSize

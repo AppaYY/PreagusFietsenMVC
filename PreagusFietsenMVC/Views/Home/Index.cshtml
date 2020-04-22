@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<PreagusFietsenMVC.Models.Bike>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -7,4 +9,65 @@
         <h1 id="title" class="jumbotron-heading">Welcome to Poketto Bikestore</h1>
         <p class="lead text-muted">Make a reservation <b>today</b> and get a free Pokémon drawing of your choice.</p>
     </div>
+
+    
 </section>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InStore.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InStore.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HourRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DailyRate)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InStore.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InStore.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HourRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DailyRate)
+            </td>
+        </tr>
+    }
+</table>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreagusFietsenMVC.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,19 +7,17 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PreagusFietsenMVC.Models;
 
-namespace PreagusFietsenMVC.Controllers
+namespace PreagusFietsenMVC.Models
 {
     public class ReservationController : Controller
     {
-        private BikeStoreContext db = new BikeStoreContext();
+        private BikeStoreContext _db = new BikeStoreContext();
 
         // GET: Reservation
         public ActionResult Index()
         {
-            var Reservations = db.Reservations.Include(c => c.Bikes);
-            return View(Reservations.ToList());
+            return View(_db.Reservations.ToList());
         }
 
         // GET: Reservation/Details/5
@@ -28,7 +27,7 @@ namespace PreagusFietsenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation reservation = _db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -37,10 +36,16 @@ namespace PreagusFietsenMVC.Controllers
         }
 
         // GET: Reservation/Create
+        //public ActionResult Create(int Id)
+        //{
+        //    return View(new ReservationViewModel(Id));
+        //}
+
+        // GET: Reservation/Create
         public ActionResult Create()
         {
-            ViewBag.Bikes = new SelectList(db.Bikes, "ID", "Type");
-            return View();
+            //int id = ViewBag.BikeID;
+            return View(new ReservationViewModel());
         }
 
         // POST: Reservation/Create
@@ -48,16 +53,15 @@ namespace PreagusFietsenMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,StartDate,EndDate,Bikes")] Reservation reservation)
+        public ActionResult Create(ReservationViewModel vm)
         {
-            if (ModelState.IsValid)
+           if (ModelState.IsValid)
             {
-                db.Reservations.Add(reservation);
-                db.SaveChanges();
+                vm.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(reservation);
+            return View(vm);
         }
 
         // GET: Reservation/Edit/5
@@ -67,7 +71,7 @@ namespace PreagusFietsenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation reservation = _db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -84,8 +88,8 @@ namespace PreagusFietsenMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(reservation).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(reservation).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(reservation);
@@ -98,7 +102,7 @@ namespace PreagusFietsenMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation reservation = _db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -111,17 +115,22 @@ namespace PreagusFietsenMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Reservation reservation = db.Reservations.Find(id);
-            db.Reservations.Remove(reservation);
-            db.SaveChanges();
+            Reservation reservation = _db.Reservations.Find(id);
+            _db.Reservations.Remove(reservation);
+            _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public void Price(ReservationViewModel vm)
+        {
+            vm.CalculatePrice();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
