@@ -14,17 +14,25 @@ namespace PreagusFietsenMVC.ViewModels
         public Reservation Reservation { get; set; }
         public Customer Customer{ get; set; }
         public Bike Bike { get; set; }
-        //public SelectList AllBikes { get; set; }
+        public SelectList AllBikes { get; set; }
         public int TotalPrice { get; set; }
-        //public ReservationViewModel() => AllBikes = new SelectList(_db.Bikes, "ID", "Type");
+        public ReservationViewModel() => AllBikes = new SelectList(_db.Bikes, "ID", "Type");
 
-        public ReservationViewModel(int Id)
-        {
-            Reservation = new Reservation();
-            Reservation.BikeID = Id;
-            Bike = _db.Bikes.Find(Id);
-            Bike.InStore = _db.Stores.Find(Bike.InStoreID);
-        }
+        //public ReservationViewModel(int Id)
+        //{
+        //    Reservation = new Reservation();
+        //    Reservation.BikeID = Id;
+        //    Bike = _db.Bikes.Find(Id);
+        //    Bike.InStore = _db.Stores.Find(Bike.InStoreID);
+        //}
+
+        //public ReservationViewModel()
+        //{
+        //    Reservation = new Reservation();
+        //    Reservation.BikeID = ViewData["BikeID"];
+        //    Bike = _db.Bikes.Find(1);
+        //    Bike.InStore = _db.Stores.Find(Bike.InStoreID);
+        //}
 
         public void Save()
         {

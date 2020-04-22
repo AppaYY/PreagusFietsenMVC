@@ -15,7 +15,6 @@
 
 <table class="table">
     <tr>
-        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.InStore.City)
         </th>
@@ -45,9 +44,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.ActionLink("Rent this bike", "Create/" + item.ID, "Reservation", null, new { id = item.ID })
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InStore.City)
             </td>

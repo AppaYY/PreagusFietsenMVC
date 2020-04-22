@@ -36,9 +36,16 @@ namespace PreagusFietsenMVC.Models
         }
 
         // GET: Reservation/Create
-        public ActionResult Create(int Id)
+        //public ActionResult Create(int Id)
+        //{
+        //    return View(new ReservationViewModel(Id));
+        //}
+
+        // GET: Reservation/Create
+        public ActionResult Create()
         {
-            return View(new ReservationViewModel(Id));
+            //int id = ViewBag.BikeID;
+            return View(new ReservationViewModel());
         }
 
         // POST: Reservation/Create

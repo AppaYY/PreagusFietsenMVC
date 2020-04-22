@@ -14,5 +14,17 @@ namespace PreagusFietsenMVC.Controllers
             var bikes = _db.Bikes.Include(b => b.InStore);
             return View(bikes.ToList());
         }
+
+        public ActionResult GetBike(int Id)
+        {
+            return RedirectToAction("SaveID", "Reservations", "Create");
+        }
+
+        public ActionResult SaveID(int Id)
+        {
+            ViewBag.BikeID = Id;
+            return View();
+        }
+
     }
 }
