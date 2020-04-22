@@ -36,15 +36,8 @@ namespace PreagusFietsenMVC.Models
         }
 
         // GET: Reservation/Create
-        //public ActionResult Create(int Id)
-        //{
-        //    return View(new ReservationViewModel(Id));
-        //}
-
-        // GET: Reservation/Create
         public ActionResult Create()
         {
-            //int id = ViewBag.BikeID;
             return View(new ReservationViewModel());
         }
 
@@ -57,6 +50,7 @@ namespace PreagusFietsenMVC.Models
         {
            if (ModelState.IsValid)
             {
+                vm.CalculatePrice();
                 vm.Save();
                 return RedirectToAction("Index");
             }
@@ -119,11 +113,6 @@ namespace PreagusFietsenMVC.Models
             _db.Reservations.Remove(reservation);
             _db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public void Price(ReservationViewModel vm)
-        {
-            vm.CalculatePrice();
         }
 
         protected override void Dispose(bool disposing)

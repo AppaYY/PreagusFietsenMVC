@@ -15,24 +15,7 @@ namespace PreagusFietsenMVC.ViewModels
         public Customer Customer{ get; set; }
         public Bike Bike { get; set; }
         public SelectList AllBikes { get; set; }
-        public int TotalPrice { get; set; }
         public ReservationViewModel() => AllBikes = new SelectList(_db.Bikes, "ID", "Type");
-
-        //public ReservationViewModel(int Id)
-        //{
-        //    Reservation = new Reservation();
-        //    Reservation.BikeID = Id;
-        //    Bike = _db.Bikes.Find(Id);
-        //    Bike.InStore = _db.Stores.Find(Bike.InStoreID);
-        //}
-
-        //public ReservationViewModel()
-        //{
-        //    Reservation = new Reservation();
-        //    Reservation.BikeID = ViewData["BikeID"];
-        //    Bike = _db.Bikes.Find(1);
-        //    Bike.InStore = _db.Stores.Find(Bike.InStoreID);
-        //}
 
         public void Save()
         {
@@ -40,24 +23,26 @@ namespace PreagusFietsenMVC.ViewModels
             _db.Reservations.Add(Reservation);
             _db.SaveChanges();
         }
-        
-
 
         public void CalculatePrice()
         {
             var start = Reservation.StartDate;
             var end = Reservation.EndDate;
-
+            var SelectedBike = _db.Bikes.Find(Reservation.BikeID);
+            double hourPrice = SelectedBike.HourRate;
+            double dayPrice = SelectedBike.DailyRate;
             if (end.Year == start.Year && end.Month == start.Month && end.Day == start.Day)
             {
-                TotalPrice = 5;
-            } 
+                TimeSpan interval = end - start;
+                double hours = interval.TotalHours;                
+                Reservation.TotalPrice = hourPrice * hours;
+            }
             else
             {
-                TotalPrice = 10;
+                TimeSpan interval = end - start;
+                double days = interval.Days;
+                Reservation.TotalPrice = dayPrice * days;
             }
-
-
         }
     }
 }

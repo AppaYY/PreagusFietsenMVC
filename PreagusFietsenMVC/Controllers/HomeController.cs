@@ -15,16 +15,5 @@ namespace PreagusFietsenMVC.Controllers
             return View(bikes.ToList());
         }
 
-        public ActionResult GetBike(int Id)
-        {
-            return RedirectToAction("SaveID", "Reservations", "Create");
-        }
-
-        public ActionResult SaveID(int Id)
-        {
-            ViewBag.BikeID = Id;
-            return View();
-        }
-
     }
 }
