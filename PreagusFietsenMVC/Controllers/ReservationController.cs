@@ -28,6 +28,7 @@ namespace PreagusFietsenMVC.Models
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Reservation reservation = _db.Reservations.Find(id);
+            reservation.Bike.InStore = _db.Stores.Find(reservation.Bike.InStoreID);
             if (reservation == null)
             {
                 return HttpNotFound();

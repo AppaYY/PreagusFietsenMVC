@@ -10,6 +10,9 @@
     <h4>Reservation</h4>
     <hr />
     <dl class="dl-horizontal">
+        @* RESERVATION INFO *@
+        <p><b>Reservation information</b>
+
         <dt>
             @Html.DisplayNameFor(model => model.StartDate)
         </dt>
@@ -26,9 +29,103 @@
             @Html.DisplayFor(model => model.EndDate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        @* CUSTOMER INFO *@
+        <br />
+        <p><b>Customer information</b>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Height)
+        </dd>
+
+        @* BIKE INFO *@
+        <br />
+        <p><b>Bike information</b></p>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bike.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bike.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bike.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bike.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bike.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bike.Brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bike.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bike.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bike.InStore.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bike.InStore.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bike.InStore.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bike.InStore.Address)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
